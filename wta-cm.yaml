@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wta-env-file
+  labels:
+    app: wta-env
+data:
+  PORT: "8080"
+  HOST: 0.0.0.0
+  NODE_ENV: development
+  HOST_URL: Http://52.177.254.59:80
+  COOKIE_ENCRYPT_PWD: superAwesomePasswordStringThatIsAtLeast32CharactersLong!
+  OKTA_ORG_URL: https://dev-39605781.okta.com
+  PGHOST: posgresql-postgresql.weight-tracker.svc.cluster.local
+  PGDATABASE: postgres
+  PGPORT: "5432"

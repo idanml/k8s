@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wta
+  labels:
+    app: wta
+spec:
+  replicas: 3
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: wta
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: wta
+    spec:
+      containers:
+        - image: idanml/weight-tracker:14
+          name: wta
+          ports:
+          - containerPort : 8080
+          envFrom:
+            - configMapRef:
+                name: wta-env-file
+            - secretRef:
+                name: env-secrets
